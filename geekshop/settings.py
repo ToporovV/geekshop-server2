@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'ordersapp',
     'debug_toolbar',
     'template_profiler_panel',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -153,10 +154,8 @@ EMAIL_HOST_USER = 'django@geekshop.local'
 EMAIL_HOST_PASSWORD = 'geekshop'
 EMAIL_USE_SSL = False
 
-# вариант python -m smtpd -n -c DebuggingServer localhost:25
-# EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
 
-# вариант логирования сообщений почты в виде файлов вместо отправки
+
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = 'tmp/email-messages/'
 
@@ -167,8 +166,6 @@ AUTHENTICATION_BACKENDS = (
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'xxxxxxxxxxxxxxxxxxxxx'
 
 with open('geekshop/google+.json', 'r') as f:
     GOOGLE_PLUS = json.load(f)

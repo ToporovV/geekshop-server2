@@ -61,7 +61,6 @@ class OrderItemsCreate(CreateView):
                 orderitems.instance = self.object
                 orderitems.save()
 
-        # удаляем пустой заказ
         if self.object.get_total_cost() == 0:
             self.object.delete()
 
@@ -88,7 +87,8 @@ class OrderItemsUpdate(UpdateView):
         if self.request.POST:
             data['orderitems'] = OrderFormSet(self.request.POST, instance=self.object)
         else:
-            formset = OrderFormSet(instance=self.object)
+            queryset = self.object.orderitems.select_related()
+            formset = OrderFormSet(instance=self.object, queryset=queryset)
             for form in formset.forms:
                 if form.instance.pk:
                     form.initial['price'] = form.instance.product.price
@@ -105,7 +105,6 @@ class OrderItemsUpdate(UpdateView):
                 orderitems.instance = self.object
                 orderitems.save()
 
-        # удаляем пустой заказ
         if self.object.get_total_cost() == 0:
             self.object.delete()
 

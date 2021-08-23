@@ -3,3 +3,7 @@ psycopg2-binary
 requests
 pillow
 social-auth-app-django
+django-debug-toolbar
+django-debug-toolbar-template-profiler
+django-extensions
+siege
